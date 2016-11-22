@@ -1,0 +1,15 @@
+<template> 
+
+  <h2  click.trigger = "playStopOsc()" >${transport}</h2>
+  <div click.trigger = "setWaveform('sawtooth')">sawtooth</div>
+  <div click.trigger = "setWaveform('sine')">sine</div>
+  <div click.trigger = "setWaveform('triangle')">triangle</div>
+  <div click.trigger = "setWaveform('square')">square</div>
+  <input type="range" change.trigger ="freqChange()" ref = "slider">
+
+
+
+
+<compose view-model="./components/test/test" ></compose>
+
+</template>
