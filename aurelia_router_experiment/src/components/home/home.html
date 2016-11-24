@@ -1,0 +1,14 @@
+<template>
+<h1>oink</h1>
+   <nav>
+    <ul>
+      <li repeat.for="row of router.navigation"> <!--Loop through routes-->
+        <a href.bind="row.href">${row.title}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <router-view></router-view>
+  <hr>
+
+</template>
