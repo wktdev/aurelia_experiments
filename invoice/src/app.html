@@ -1,0 +1,21 @@
+<template> 
+ <require from="components/work-form/work-form.html"></require>
+ 
+<h1>App</h1>
+
+<h2>Click to create new form</h2>
+
+
+ <form>
+ 	<input type="number" value.bind="numberOfFields">
+    <button type="submit" click.trigger="addMultipleWorkForms(numberOfFields)">Add Work Form</button>
+ </form>
+	
+
+<h1>${numberOfFields}</h1>
+
+<div>n</div>
+
+ <work-form></work-form>
+
+</template>
