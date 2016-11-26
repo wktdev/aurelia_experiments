@@ -1,25 +1,26 @@
-<template> 
- <require from="components/work-form/work-form.html"></require>
- 
-<h1>App</h1>
-
-<h2>Click to create new form</h2>
-
-
- <form>
- 	<input type="number" value.bind="numberOfFields">
-    <button type="submit" click.trigger="addMultipleWorkForms(numberOfFields)">Add Work Form</button>
- </form>
-	
-
-<h1>${numberOfFields}</h1>
+<template>
+   <!--  <require from="components/work-form/work-form.html"></require> -->
+    <h1>App</h1>
+    <h2>Click to create new form</h2>
+  
+  <form submit.trigger="addWorkEntry()">
+    <input type="text" value.bind="payRate">
+    <button type="submit">Add</button>
+  </form>
 
 
 
-
+    <ul>
+        <li repeat.for="workEntry of workEntries">
+            <input type="date" value.bind="workEntry.date">
+            <input type="text" value.bind="workEntry.item">
+            <input type="number" value.bind="workEntry.payRate">
+            <input type="number" value.bind="workEntry.hours">
+            <input type="number" value.bind="workEntry.payment">
     
-<work-form repeat.for="item of formList"></work-form>
-
+           <!--  <button click.trigger="removeTodo(todo)">Remove</button> -->
+        </li>
+    </ul>
 
 
 

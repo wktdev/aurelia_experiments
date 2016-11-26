@@ -1,9 +1,10 @@
-define('app',["exports"], function (exports) {
-  "use strict";
+define('app',['exports', 'components/work-form/work-entry'], function (exports, _workEntry) {
+  'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.App = undefined;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -16,13 +17,16 @@ define('app',["exports"], function (exports) {
       _classCallCheck(this, App);
 
       this.numberOfFields = 0;
-      this.counter = 0;
-      this.form = { date: "", item: "", payRate: 0, hours: 0, payTotal: 0 }, this.formList = [];
+      this.workEntries = [];
+      this.date = '';
+      this.item = '';
+      this.payRate = 0;
+      this.hours = 0;
+      this.payment = 0;
     }
 
-    App.prototype.addWorkForm = function addWorkForm() {
-      this.formList.push(this.form);
-      console.log(this.formList);
+    App.prototype.addWorkEntry = function addWorkEntry() {
+      this.workEntries.push(new _workEntry.Work(this.date, this.item, this.payRate, this.hours, this.payment));
     };
 
     App.prototype.getDateTimeSpan = function getDateTimeSpan() {};
@@ -35,7 +39,7 @@ define('app',["exports"], function (exports) {
 
     App.prototype.addMultipleWorkForms = function addMultipleWorkForms(num) {
       for (var i = 0; i < num; i += 1) {
-        this.addWorkForm();
+        this.addWorkEntry();
       }
     };
 
@@ -119,23 +123,28 @@ define('resources/index',["exports"], function (exports) {
   exports.configure = configure;
   function configure(config) {}
 });
-define('components/work-form/work-form',["exports"], function (exports) {
-	"use strict";
+define('components/work-form/work-entry',["exports"], function (exports) {
+  "use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
 
-	function _classCallCheck(instance, Constructor) {
-		if (!(instance instanceof Constructor)) {
-			throw new TypeError("Cannot call a class as a function");
-		}
-	}
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
 
-	var WorkForm = exports.WorkForm = function WorkForm() {
-		_classCallCheck(this, WorkForm);
-	};
+  var Todo = exports.Todo = function Todo(date, item, payRate, hours, payment) {
+    _classCallCheck(this, Todo);
+
+    this.date = date;
+    this.item = item;
+    this.payRate = payRate;
+    this.hours = hours;
+    this.payment = payment;
+  };
 });
-define('text!app.html', ['module'], function(module) { module.exports = "<template> \r\n <require from=\"components/work-form/work-form.html\"></require>\r\n \r\n<h1>App</h1>\r\n\r\n<h2>Click to create new form</h2>\r\n\r\n\r\n <form>\r\n \t<input type=\"number\" value.bind=\"numberOfFields\">\r\n    <button type=\"submit\" click.trigger=\"addMultipleWorkForms(numberOfFields)\">Add Work Form</button>\r\n </form>\r\n\t\r\n\r\n<h1>${numberOfFields}</h1>\r\n\r\n\r\n\r\n\r\n    \r\n<work-form repeat.for=\"item of formList\"></work-form>\r\n\r\n\r\n\r\n\r\n</template>"; });
-define('text!components/work-form/work-form.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n\t\r\n\r\n\t<label for=\"date\">Date</label>\r\n\t<input type=\"date\" name=\"date\">\r\n\t<label for=\"rate\">Rate</label>\r\n\t<input type=\"number\" name=\"rate\">\r\n\t<label for=\"rate\">Hours</label>\r\n\t<input type=\"number\" name=\"rate\">\r\n\t<label for=\"total\">Total</label>\r\n\t<input type=\"number\" name=\"total\">\r\n\r\n</template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n   <!--  <require from=\"components/work-form/work-form.html\"></require> -->\r\n    <h1>App</h1>\r\n    <h2>Click to create new form</h2>\r\n  \r\n  <form submit.trigger=\"addWorkEntry()\">\r\n    <input type=\"text\" value.bind=\"payRate\">\r\n    <button type=\"submit\">Add</button>\r\n  </form>\r\n\r\n\r\n\r\n    <ul>\r\n        <li repeat.for=\"workEntry of workEntries\">\r\n            <input type=\"date\" value.bind=\"workEntry.date\">\r\n            <input type=\"text\" value.bind=\"workEntry.item\">\r\n            <input type=\"number\" value.bind=\"workEntry.payRate\">\r\n            <input type=\"number\" value.bind=\"workEntry.hours\">\r\n            <input type=\"number\" value.bind=\"workEntry.payment\">\r\n    \r\n           <!--  <button click.trigger=\"removeTodo(todo)\">Remove</button> -->\r\n        </li>\r\n    </ul>\r\n\r\n\r\n\r\n</template>\r\n"; });
 //# sourceMappingURL=app-bundle.js.map

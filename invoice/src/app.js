@@ -1,17 +1,21 @@
+import {Work} from 'components/work-form/work-entry';
 
 export class App {
   constructor() {
   	this.numberOfFields = 0;
-  	this.counter = 0;
-  	this.form = {date:"", item:"", payRate:0, hours:0, payTotal:0 },
-  	this.formList =[];
+  	this.workEntries = [];
+    this.date ='';
+    this.item = '';
+    this.payRate = 0;
+    this.hours = 0;
+    this.payment = 0;
 
 
   }
 
-    addWorkForm(){
-    this.formList.push(this.form);
-    console.log(this.formList);
+  addWorkEntry(){
+    this.workEntries.push(new Work(this.date,this.item,this.payRate,this.hours,this.payment));
+    
   }
 
 
@@ -35,7 +39,7 @@ export class App {
 
   addMultipleWorkForms(num){
     for(var i = 0; i < num; i+=1){
-      this.addWorkForm()
+      this.addWorkEntry()
     }
   }
 
@@ -49,6 +53,7 @@ export class App {
     this.formList[index].date = val;
 
   }
+  
   setFieldPayRate(index,val){
   this.formList[index].payRate = val;
 

@@ -1,0 +1,16 @@
+<template>
+
+	
+
+	<label for="date">Date</label>
+	<input type="date" name="date" value.bind = "obj.date">
+	<label for="item">Item</label>
+	<input type="text" name="item" value.bind = "obj.item">
+	<label for="rate">Rate</label>
+	<input type="number" name="rate" value.bind = "obj.rate" >
+	<label for="rate">Hours</label>
+	<input type="number" name="hours" value.bind = "obj.hours">
+	<label for="total">Total</label>
+	<input type="number" name="total" value.bind = "obj.payTotal">
+
+</template>
