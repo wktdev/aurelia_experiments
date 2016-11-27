@@ -1,76 +1,28 @@
-import {Work} from 'components/work-form/work-entry';
+import {WorkEntry} from 'components/work-entry';
 
 export class App {
   constructor() {
-  	this.numberOfFields = 0;
-  	this.workEntries = [];
-    this.date ='';
-    this.item = '';
-    this.payRate = 0;
-    this.hours = 0;
-    this.payment = 0;
+    this.heading = "works";
+    this.workEntries = [];
+    this.workDate = '';
+    this.workItem = '';
+    this.workPayRate = '';
+    this.workHours = '';
+    this.workPayment = '';
+  }
+//date, item, payRate, hours, payment
+  addWorkEntry() {
 
+      this.workEntries.push(new WorkEntry(this.workDate, this.workItemm, this.workPayRate,this.workHours,this.workPayment));
 
+   
   }
 
-  addWorkEntry(){
-    this.workEntries.push(new Work(this.date,this.item,this.payRate,this.hours,this.payment));
-    
-  }
+  removeWorkEntry(workEntry) {
 
-
-  //__________________________________________BEGIN batch set work fields
-
-  getDateTimeSpan(){
-
-  }
-
-  setAllPayRate(){
-
-  }
-
-  setAllHours(){
-
-  }
-
-  setAllItem(){
-
-  }
-
-  addMultipleWorkForms(num){
-    for(var i = 0; i < num; i+=1){
-      this.addWorkEntry()
+    let index = this.workEntries.indexOf(workEntry);
+    if (index !== -1) {
+       this.workEntries.splice(index, 1);
     }
   }
-
-
-  //__________________________________________END batch set work fields
-
-  //__________________________________________BEGIN set individual work fields
-
-
-  setFieldData(index,val){
-    this.formList[index].date = val;
-
-  }
-  
-  setFieldPayRate(index,val){
-  this.formList[index].payRate = val;
-
-  }
-
-  setHours(index,val){
-  this.formList[index].hours = val;
-  }
-
-  calculatePayTotal(index,val){
-      var payRate = this.formList[index].payRate;
-      var hours = this.formList[index].hours;
-      this.formList[index].payTotal = payRate * hours;
-  }
-
-
-//_____________________________________________END set individual work fields
-
 }
-
