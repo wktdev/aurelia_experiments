@@ -1,5 +1,4 @@
 import moment from 'moment';
-
 import {WorkEntry} from 'components/work-entry';
 
 
@@ -18,10 +17,7 @@ export class App {
   addWorkEntry() {
  
       this.workEntries.push(new WorkEntry(this.workDate, this.workItem, this.workPayRate,this.workHours,this.workPayment));
-    console.log(this.workEntries)
-
-
-      console.log(moment().format("dddd"))
+      console.log(moment().format())
   }
 
   updateWorkEntry(workEntry){
@@ -30,6 +26,14 @@ export class App {
     let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
     console.log(obj.item)
     this.workEntries[index] = obj;
+    console.log(this.workEntries);
+  }
+
+  updateWorkEntryField(workEntry){
+    // console.log(workEntry.item)
+    let index = this.workEntries.indexOf(workEntry);
+
+    this.workEntries[index] = workEntry;
     console.log(this.workEntries);
   }
 
