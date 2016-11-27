@@ -13,16 +13,16 @@
   <ul>
     <li repeat.for="work of workEntries">
     <label for="date">Date</label>
-    <input type="date" value.bind="work.date" change.trigger="updateWorkEntryField(work)" name="date">
+    <input type="date" value.bind="work.date" change.trigger="updateWorkEntryField(work)" keyup.trigger="updateWorkEntryField(work)"  name="date">
       <label for="item">Item</label>
-    <input type="string" value.bind="work.item" change.trigger="updateWorkEntryField(work)"  name="item">
+    <input type="string" value.bind="work.item" change.trigger="updateWorkEntryField(work)"  keyup.trigger="updateWorkEntryField(work)"  name="item">
       <label for="pay-rate">Pay rate</label>
-    <input type="number" value.bind="work.payRate" change.trigger="updateWorkEntryField(work)"  name="pay-rate">
+    <input type="number" value.bind="work.payRate" change.trigger="updateWorkEntryField(work)" keyup.trigger="updateWorkEntryField(work)"  name="pay-rate">
       <label for="hours">Hours</label>
-    <input type="number" value.bind="work.hours"  change.trigger="updateWorkEntryField(work)"  name="hours">
+    <input type="number" value.bind="work.hours"  change.trigger="updateWorkEntryField(work)"  keyup.trigger="updateWorkEntryField(work)"  name="hours">
       <label for="payment">Payment</label>
-    <input type="number" value.bind="work.payment" change.trigger="updateWorkEntryField(work)"  name="payment">
-    <button click.trigger ="updateWorkEntry(work)">Update</button>
+    <input type="number" value.bind="work.payment" change.trigger="updateWorkEntryField(work)" keyup.trigger="updateWorkEntryField(work)"  name="payment">
+    <button click.trigger="updateWorkEntry(work)">Update</button>
     <button click.trigger="removeWorkEntry(work)">Remove</button>
     </li>    
   </ul>

@@ -38,10 +38,9 @@ export class App {
   }
 
   removeWorkEntry(workEntry) {
-
+    console.log(this.workEntries.indexOf(workEntry))
     let index = this.workEntries.indexOf(workEntry);
-    if (index !== -1) {
-       this.workEntries.splice(index, 1);
-    }
+    this.workEntries.splice(index, 1);
+    
   }
 }
