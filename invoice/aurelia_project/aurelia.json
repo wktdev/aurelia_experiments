@@ -87,7 +87,16 @@
                 "node_modules/bluebird/js/browser/bluebird.core.js",
                 "node_modules/requirejs/require.js"
             ],
-            "dependencies": [
+            "dependencies": [{
+                    "name": "moment",
+                    "path": "../node_modules/moment",
+                    "main": "moment"
+                }, {
+                    "name": "moment-timezone",
+                    "path": "../node_modules/moment-timezone",
+                    "main": "moment-timezone",
+                    "deps": ["moment"]
+                },
                 "jquery", {
                     "name": "bootstrap",
                     "path": "../node_modules/bootstrap/dist",

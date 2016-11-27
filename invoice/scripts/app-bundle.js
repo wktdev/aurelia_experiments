@@ -1,10 +1,18 @@
-define('app',['exports', 'components/work-entry'], function (exports, _workEntry) {
+define('app',['exports', 'moment', 'components/work-entry'], function (exports, _moment, _workEntry) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.App = undefined;
+
+  var _moment2 = _interopRequireDefault(_moment);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -28,12 +36,15 @@ define('app',['exports', 'components/work-entry'], function (exports, _workEntry
     App.prototype.addWorkEntry = function addWorkEntry() {
 
       this.workEntries.push(new _workEntry.WorkEntry(this.workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
-      console.log(this.workItem);
+      console.log(this.workEntries);
+
+      console.log((0, _moment2.default)().format("dddd"));
     };
 
     App.prototype.updateWorkEntry = function updateWorkEntry(workEntry) {
       var index = this.workEntries.indexOf(workEntry);
-      var obj = new _workEntry.WorkEntry(this.workDate, this.workItemm, this.workPayRate, this.workHours, this.workPayment);
+      var obj = new _workEntry.WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
+      console.log(obj.item);
       this.workEntries[index] = obj;
       console.log(this.workEntries);
     };
