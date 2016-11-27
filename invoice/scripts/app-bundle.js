@@ -16,7 +16,7 @@ define('app',['exports', 'components/work-entry'], function (exports, _workEntry
     function App() {
       _classCallCheck(this, App);
 
-      this.heading = "works";
+      this.heading = "Invoice App";
       this.workEntries = [];
       this.workDate = '';
       this.workItem = '';
@@ -27,7 +27,15 @@ define('app',['exports', 'components/work-entry'], function (exports, _workEntry
 
     App.prototype.addWorkEntry = function addWorkEntry() {
 
-      this.workEntries.push(new _workEntry.WorkEntry(this.workDate, this.workItemm, this.workPayRate, this.workHours, this.workPayment));
+      this.workEntries.push(new _workEntry.WorkEntry(this.workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
+      console.log(this.workItem);
+    };
+
+    App.prototype.updateWorkEntry = function updateWorkEntry(workEntry) {
+      var index = this.workEntries.indexOf(workEntry);
+      var obj = new _workEntry.WorkEntry(this.workDate, this.workItemm, this.workPayRate, this.workHours, this.workPayment);
+      this.workEntries[index] = obj;
+      console.log(this.workEntries);
     };
 
     App.prototype.removeWorkEntry = function removeWorkEntry(workEntry) {
@@ -91,35 +99,6 @@ define('main',['exports', './environment'], function (exports, _environment) {
     });
   }
 });
-define('components/todos',["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  var Todo = exports.Todo = function Todo(description) {
-    _classCallCheck(this, Todo);
-
-    this.description = description;
-    this.done = false;
-  };
-});
-define('resources/index',["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.configure = configure;
-  function configure(config) {}
-});
 define('components/work-entry',["exports"], function (exports) {
   "use strict";
 
@@ -143,5 +122,14 @@ define('components/work-entry',["exports"], function (exports) {
     this.payment = payment;
   };
 });
-define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <h1>${heading}</h1>\n\n  <form submit.trigger=\"addWorkEntry()\">\n    <input type=\"date\" value.bind=\"workDate\">\n    <input type=\"string\" value.bind=\"workItem\">\n    <input type=\"number\" value.bind=\"workPayRate\">\n    <input type=\"number\" value.bind=\"workHours\">\n    <input type=\"number\" value.bind=\"workPayment\">\n    <button type=\"submit\">Add work</button>\n  </form>\n\n  <ul>\n    <li repeat.for=\"work of workEntries\">\n    <input type=\"date\" value.bind=\"work.date\">\n    <input type=\"string\" value.bind=\"work.item\">\n    <input type=\"number\" value.bind=\"work.payRate\">\n    <input type=\"number\" value.bind=\"work.hours\">\n    <input type=\"number\" value.bind=\"work.payment\">\n    <button click.trigger=\"removeWorkEntry(work)\">Remove</button>\n    </li>    \n  </ul>\n</template>"; });
+define('resources/index',["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.configure = configure;
+  function configure(config) {}
+});
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <h1>${heading}</h1>\r\n\r\n  <form submit.trigger=\"addWorkEntry()\">\r\n    <input type=\"date\" value.bind=\"workDate\">\r\n    <input type=\"string\" value.bind=\"workItem\">\r\n    <input type=\"number\" value.bind=\"workPayRate\">\r\n    <input type=\"number\" value.bind=\"workHours\">\r\n    <input type=\"number\" value.bind=\"workPayment\">\r\n    <button type=\"submit\">Add work</button>\r\n  </form>\r\n\r\n  <ul>\r\n    <li repeat.for=\"work of workEntries\">\r\n    <label for=\"date\">Date</label>\r\n    <input type=\"date\" value.bind=\"work.date\" name=\"date\">\r\n      <label for=\"item\">Item</label>\r\n    <input type=\"string\" value.bind=\"work.item\" name=\"item\">\r\n      <label for=\"pay-rate\">Pay rate</label>\r\n    <input type=\"number\" value.bind=\"work.payRate\" name=\"pay-rate\">\r\n      <label for=\"hours\">Hours</label>\r\n    <input type=\"number\" value.bind=\"work.hours\" name=\"hours\">\r\n      <label for=\"payment\">Payment</label>\r\n    <input type=\"number\" value.bind=\"work.payment\" name=\"payment\">\r\n    <button click.trigger =\"updateWorkEntry(work)\">Update</button>\r\n    <button click.trigger=\"removeWorkEntry(work)\">Remove</button>\r\n    </li>    \r\n  </ul>\r\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map

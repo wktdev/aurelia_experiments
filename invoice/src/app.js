@@ -2,7 +2,7 @@ import {WorkEntry} from 'components/work-entry';
 
 export class App {
   constructor() {
-    this.heading = "works";
+    this.heading = "Invoice App";
     this.workEntries = [];
     this.workDate = '';
     this.workItem = '';
@@ -12,10 +12,16 @@ export class App {
   }
 //date, item, payRate, hours, payment
   addWorkEntry() {
+ 
+      this.workEntries.push(new WorkEntry(this.workDate, this.workItem, this.workPayRate,this.workHours,this.workPayment));
+      console.log(this.workItem)
+  }
 
-      this.workEntries.push(new WorkEntry(this.workDate, this.workItemm, this.workPayRate,this.workHours,this.workPayment));
-
-   
+  updateWorkEntry(workEntry){
+    let index = this.workEntries.indexOf(workEntry);
+    let obj = new WorkEntry(this.workDate, this.workItemm, this.workPayRate,this.workHours,this.workPayment);
+    this.workEntries[index] = obj;
+    console.log(this.workEntries)
   }
 
   removeWorkEntry(workEntry) {

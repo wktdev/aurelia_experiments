@@ -12,11 +12,17 @@
 
   <ul>
     <li repeat.for="work of workEntries">
-    <input type="date" value.bind="work.date">
-    <input type="string" value.bind="work.item">
-    <input type="number" value.bind="work.payRate">
-    <input type="number" value.bind="work.hours">
-    <input type="number" value.bind="work.payment">
+    <label for="date">Date</label>
+    <input type="date" value.bind="work.date" name="date">
+      <label for="item">Item</label>
+    <input type="string" value.bind="work.item" name="item">
+      <label for="pay-rate">Pay rate</label>
+    <input type="number" value.bind="work.payRate" name="pay-rate">
+      <label for="hours">Hours</label>
+    <input type="number" value.bind="work.hours" name="hours">
+      <label for="payment">Payment</label>
+    <input type="number" value.bind="work.payment" name="payment">
+    <button click.trigger ="updateWorkEntry(work)">Update</button>
     <button click.trigger="removeWorkEntry(work)">Remove</button>
     </li>    
   </ul>
