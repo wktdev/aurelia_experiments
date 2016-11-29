@@ -97,16 +97,7 @@
                     "main": "moment-timezone",
                     "deps": ["moment"]
                 },
-                "jquery", {
-                    "name": "bootstrap",
-                    "path": "../node_modules/bootstrap/dist",
-                    "main": "js/bootstrap.min",
-                    "deps": ["jquery"],
-                    "exports": "$",
-                    "resources": [
-                        "css/bootstrap.css"
-                    ]
-                },
+               
                 "aurelia-binding",
                 "aurelia-bootstrapper",
                 "aurelia-dependency-injection",

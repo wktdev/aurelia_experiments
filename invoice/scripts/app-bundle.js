@@ -60,6 +60,13 @@ define('app',['exports', 'moment', 'components/work-entry'], function (exports, 
       this.workEntries.splice(index, 1);
     };
 
+    App.prototype.copyWorkEntry = function copyWorkEntry(workEntry) {
+      var obj = new _workEntry.WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
+      var index = this.workEntries.indexOf(workEntry);
+
+      this.workEntries.splice(index, 0, obj);
+    };
+
     return App;
   }();
 });
@@ -113,6 +120,15 @@ define('main',['exports', './environment'], function (exports, _environment) {
     });
   }
 });
+define('resources/index',["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.configure = configure;
+  function configure(config) {}
+});
 define('components/work-entry',["exports"], function (exports) {
   "use strict";
 
@@ -136,14 +152,5 @@ define('components/work-entry',["exports"], function (exports) {
     this.payment = payment;
   };
 });
-define('resources/index',["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.configure = configure;
-  function configure(config) {}
-});
-define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <h1>${heading}</h1>\r\n\r\n  <form submit.trigger=\"addWorkEntry()\">\r\n    <input type=\"date\" value.bind=\"workDate\">\r\n    <input type=\"string\" value.bind=\"workItem\">\r\n    <input type=\"number\" value.bind=\"workPayRate\">\r\n    <input type=\"number\" value.bind=\"workHours\">\r\n    <input type=\"number\" value.bind=\"workPayment\">\r\n    <button type=\"submit\">Add work</button>\r\n  </form>\r\n\r\n  <ul>\r\n    <li repeat.for=\"work of workEntries\">\r\n    <label for=\"date\">Date</label>\r\n    <input type=\"date\" value.bind=\"work.date\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"date\">\r\n      <label for=\"item\">Item</label>\r\n    <input type=\"string\" value.bind=\"work.item\" change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"item\">\r\n      <label for=\"pay-rate\">Pay rate</label>\r\n    <input type=\"number\" value.bind=\"work.payRate\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"pay-rate\">\r\n      <label for=\"hours\">Hours</label>\r\n    <input type=\"number\" value.bind=\"work.hours\"  change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"hours\">\r\n      <label for=\"payment\">Payment</label>\r\n    <input type=\"number\" value.bind=\"work.payment\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"payment\">\r\n    <button click.trigger=\"updateWorkEntry(work)\">Update</button>\r\n    <button click.trigger=\"removeWorkEntry(work)\">Remove</button>\r\n    </li>    \r\n  </ul>\r\n</template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <h1>${heading}</h1>\r\n\r\n  <form submit.trigger=\"addWorkEntry()\">\r\n    <input type=\"date\" value.bind=\"workDate\">\r\n    <input type=\"string\" value.bind=\"workItem\">\r\n    <input type=\"number\" value.bind=\"workPayRate\">\r\n    <input type=\"number\" value.bind=\"workHours\">\r\n    <input type=\"number\" value.bind=\"workPayment\">\r\n    <button type=\"submit\">Add work</button>\r\n  </form>\r\n\r\n  <ul>\r\n    <li repeat.for=\"work of workEntries\">\r\n    <label for=\"date\">Date</label>\r\n    <input type=\"date\" value.bind=\"work.date\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"date\">\r\n      <label for=\"item\">Item</label>\r\n    <input type=\"string\" value.bind=\"work.item\" change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"item\">\r\n      <label for=\"pay-rate\">Pay rate</label>\r\n    <input type=\"number\" value.bind=\"work.payRate\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"pay-rate\">\r\n      <label for=\"hours\">Hours</label>\r\n    <input type=\"number\" value.bind=\"work.hours\"  change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"hours\">\r\n      <label for=\"payment\">Payment</label>\r\n    <input type=\"number\" value.bind=\"work.payment\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"payment\">\r\n    <button click.trigger=\"updateWorkEntry(work)\">Update</button>\r\n    <button click.trigger=\"removeWorkEntry(work)\">Remove</button>\r\n    <button click.trigger=\"copyWorkEntry(work)\">Copy</button>\r\n    </li>    \r\n  </ul>\r\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map

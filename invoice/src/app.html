@@ -24,6 +24,7 @@
     <input type="number" value.bind="work.payment" change.trigger="updateWorkEntryField(work)" keyup.trigger="updateWorkEntryField(work)"  name="payment">
     <button click.trigger="updateWorkEntry(work)">Update</button>
     <button click.trigger="removeWorkEntry(work)">Remove</button>
+    <button click.trigger="copyWorkEntry(work)">Copy</button>
     </li>    
   </ul>
 </template>

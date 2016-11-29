@@ -1,8 +1,6 @@
 import moment from 'moment';
 import {WorkEntry} from 'components/work-entry';
 
-
-
 export class App {
   constructor() {
     this.heading = "Invoice App";
@@ -43,4 +41,14 @@ export class App {
     this.workEntries.splice(index, 1);
     
   }
+
+  copyWorkEntry(workEntry){
+      let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
+       let index = this.workEntries.indexOf(workEntry);
+       // this.workEntries.push(obj)
+       this.workEntries.splice(index, 0, obj);
+
+
+  }
+
 }
