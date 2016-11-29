@@ -27,12 +27,20 @@ export class App {
     console.log(this.workEntries);
   }
 
+    calculatePay(workEntry){
+    let index = this.workEntries.indexOf(workEntry);
+    let payment = (workEntry.payRate * workEntry.hours);
+    this.workEntries[index].payment = payment;
+
+
+  }
+
   updateWorkEntryField(workEntry){
     // console.log(workEntry.item)
     let index = this.workEntries.indexOf(workEntry);
-
     this.workEntries[index] = workEntry;
     console.log(this.workEntries);
+    this.calculatePay(workEntry)
   }
 
   removeWorkEntry(workEntry) {
@@ -43,12 +51,12 @@ export class App {
   }
 
   copyWorkEntry(workEntry){
-      let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
+       let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
        let index = this.workEntries.indexOf(workEntry);
        // this.workEntries.push(obj)
        this.workEntries.splice(index, 0, obj);
 
-
+      
   }
 
 }
