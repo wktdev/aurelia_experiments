@@ -13,19 +13,16 @@ export class App {
             this.workHours = '';
             this.workPayment = '';
         }
-        //date, item, payRate, hours, payment
+
     addWorkEntry(workDate) {
-//|| this.workDate
 
         this.workEntries.push(new WorkEntry(workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
 
     }
 
     addWorkEnteries() {
-        //console.log(this.startDate) // format is:  2016-11-02
 
-
-        //____________________________________BEGIN get number of days
+        //____________________________________BEGIN get number of days | NOTE:___this.startDate___ format is:  2016-11-02
 
         let startDateArr = (this.startDate).split("-"); // turn to array
         let endDateArr = (this.endDate).split("-"); // turn to array
@@ -36,9 +33,6 @@ export class App {
 
         //____________________________________END get number of days
 
-
-
-
         var currentDate = new Date(this.startDate);
         console.log(currentDate + " start date")
 
@@ -46,27 +40,8 @@ export class App {
              currentDate.setDate(currentDate.getDate() + 1);
             var answer = moment(currentDate).format('YYYY-MM-DD');
             this.addWorkEntry(answer)
-     
-            // console.log(moment(currentDate).format('YYYY-MM-DD'))
             
         }
-
-
-        
-        // var dateIncrement = moment(this.startDate, 'YYYY/MM/DD').add(1,"days").format('YYYY-MM-DD');
-
-
-        // //$("#date").val(myDate);
-
-        // console.log(numberOfDays)
-        // for (var i = 0; i < numberOfDays; i += 1) {
-
-        //     console.log(i)
-        //      this.addWorkEntry(dateIncrement)
-        //      dateIncrement = moment(this.startDate, 'YYYY/MM/DD').add(1,"days").format('YYYY-MM-DD');
-        // }
-
-
 
     }
 
@@ -74,16 +49,14 @@ export class App {
         let index = this.workEntries.indexOf(workEntry);
         let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
         this.workEntries[index] = obj;
-
     }
 
     calculatePay(workEntry) {
         let index = this.workEntries.indexOf(workEntry);
         let payment = (workEntry.payRate * workEntry.hours);
         this.workEntries[index].payment = payment;
-
-
     }
+
 
     updateWorkEntryField(workEntry) {
         // console.log(workEntry.item)
@@ -105,8 +78,6 @@ export class App {
         let index = this.workEntries.indexOf(workEntry);
         // this.workEntries.push(obj)
         this.workEntries.splice(index, 0, obj);
-
-
     }
 
 }
