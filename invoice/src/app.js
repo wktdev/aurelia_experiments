@@ -15,17 +15,14 @@ export class App {
         }
         //date, item, payRate, hours, payment
     addWorkEntry(workDate) {
+//|| this.workDate
 
-
-        this.workEntries.push(new WorkEntry(workDate || this.workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
+        this.workEntries.push(new WorkEntry(workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
 
     }
 
     addWorkEnteries() {
         //console.log(this.startDate) // format is:  2016-11-02
-
-
-        console.log(moment("2016-11-02").add(1, "Days").format("YYYY MM DD"))
 
 
         //____________________________________BEGIN get number of days
@@ -39,14 +36,36 @@ export class App {
 
         //____________________________________END get number of days
 
-        console.log(numberOfDays)
+
+
+
+        var currentDate = new Date(this.startDate);
+        console.log(currentDate + " start date")
+
         for (var i = 0; i < numberOfDays; i += 1) {
-
-            console.log(i)
-            //this.addWorkEntry(new_date)
-
-
+             currentDate.setDate(currentDate.getDate() + 1);
+            var answer = moment(currentDate).format('YYYY-MM-DD');
+            this.addWorkEntry(answer)
+     
+            // console.log(moment(currentDate).format('YYYY-MM-DD'))
+            
         }
+
+
+        
+        // var dateIncrement = moment(this.startDate, 'YYYY/MM/DD').add(1,"days").format('YYYY-MM-DD');
+
+
+        // //$("#date").val(myDate);
+
+        // console.log(numberOfDays)
+        // for (var i = 0; i < numberOfDays; i += 1) {
+
+        //     console.log(i)
+        //      this.addWorkEntry(dateIncrement)
+        //      dateIncrement = moment(this.startDate, 'YYYY/MM/DD').add(1,"days").format('YYYY-MM-DD');
+        // }
+
 
 
     }

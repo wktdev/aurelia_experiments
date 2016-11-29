@@ -37,12 +37,10 @@ define('app',['exports', 'moment', 'components/work-entry'], function (exports, 
 
         App.prototype.addWorkEntry = function addWorkEntry(workDate) {
 
-            this.workEntries.push(new _workEntry.WorkEntry(workDate || this.workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
+            this.workEntries.push(new _workEntry.WorkEntry(workDate, this.workItem, this.workPayRate, this.workHours, this.workPayment));
         };
 
         App.prototype.addWorkEnteries = function addWorkEnteries() {
-
-            console.log((0, _moment2.default)("2016-11-02").add(1, "Days").format("YYYY MM DD"));
 
             var startDateArr = this.startDate.split("-");
             var endDateArr = this.endDate.split("-");
@@ -51,10 +49,13 @@ define('app',['exports', 'moment', 'components/work-entry'], function (exports, 
 
             var numberOfDays = endDate.diff(startDate, 'days') + 1;
 
-            console.log(numberOfDays);
-            for (var i = 0; i < numberOfDays; i += 1) {
+            var currentDate = new Date(this.startDate);
+            console.log(currentDate + " start date");
 
-                console.log(i);
+            for (var i = 0; i < numberOfDays; i += 1) {
+                currentDate.setDate(currentDate.getDate() + 1);
+                var answer = (0, _moment2.default)(currentDate).format('YYYY-MM-DD');
+                this.addWorkEntry(answer);
             }
         };
 
@@ -143,6 +144,11 @@ define('main',['exports', './environment'], function (exports, _environment) {
     });
   }
 });
+define('sandbox_ignore',[], function () {
+  "use strict";
+
+  console.log("2016-11-02".split("-"));
+});
 define('components/work-entry',["exports"], function (exports) {
   "use strict";
 
@@ -174,11 +180,6 @@ define('resources/index',["exports"], function (exports) {
   });
   exports.configure = configure;
   function configure(config) {}
-});
-define('sandbox_ignore',[], function () {
-  "use strict";
-
-  console.log("2016-11-02".split("-"));
 });
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n  <h1>${heading}</h1>\r\n\r\n  <form submit.trigger=\"addWorkEnteries()\">\r\n    <input type=\"date\" value.bind=\"startDate\">\r\n    <input type=\"date\" value.bind=\"endDate\">\r\n    <button type=\"submit\">Add work</button>\r\n  </form>\r\n\r\n  <ul>\r\n    <li repeat.for=\"work of workEntries\">\r\n    <label for=\"date\">Date</label>\r\n    <input type=\"date\" value.bind=\"work.date\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"date\">\r\n      <label for=\"item\">Item</label>\r\n    <input type=\"string\" value.bind=\"work.item\" change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"item\">\r\n      <label for=\"pay-rate\">Pay rate</label>\r\n    <input type=\"number\" value.bind=\"work.payRate\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"pay-rate\">\r\n      <label for=\"hours\">Hours</label>\r\n    <input type=\"number\" value.bind=\"work.hours\"  change.trigger=\"updateWorkEntryField(work)\"  keyup.trigger=\"updateWorkEntryField(work)\"  name=\"hours\">\r\n      <label for=\"payment\">Payment</label>\r\n    <input type=\"number\" value.bind=\"work.payment\" change.trigger=\"updateWorkEntryField(work)\" keyup.trigger=\"updateWorkEntryField(work)\"  name=\"payment\">\r\n    <button click.trigger=\"updateWorkEntry(work)\">Update</button>\r\n    <button click.trigger=\"removeWorkEntry(work)\">Remove</button>\r\n    <button click.trigger=\"copyWorkEntry(work)\">Copy</button>\r\n    </li>    \r\n  </ul>\r\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map
