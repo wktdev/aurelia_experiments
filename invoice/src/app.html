@@ -1,8 +1,9 @@
 <template>
   <h1>${heading}</h1>
 
-  <form submit.trigger="addWorkEntry()">
-    <input type="date" value.bind="workDate">
+  <form submit.trigger="addWorkEnteries()">
+    <input type="date" value.bind="startDate">
+    <input type="date" value.bind="endDate">
     <button type="submit">Add work</button>
   </form>
 
