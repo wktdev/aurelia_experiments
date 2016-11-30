@@ -3,16 +3,16 @@ import { WorkEntry } from 'components/work-entry';
 
 export class App {
     constructor() {
-            this.heading = "Invoice App";
-            this.startDate = '';
-            this.endDate = '';
-            this.workEntries = [];
-            this.workDate = '';
-            this.workItem = '';
-            this.workPayRate = '';
-            this.workHours = '';
-            this.workPayment = '';
-        }
+        this.heading = "Invoice App";
+        this.startDate = '';
+        this.endDate = '';
+        this.workEntries = [];
+        this.workDate = '';
+        this.workItem = '';
+        this.workPayRate = '';
+        this.workHours = '';
+        this.workPayment = '';
+    }
 
     addWorkEntry(workDate) {
 
@@ -37,10 +37,10 @@ export class App {
         console.log(currentDate + " start date")
 
         for (var i = 0; i < numberOfDays; i += 1) {
-             currentDate.setDate(currentDate.getDate() + 1);
+            currentDate.setDate(currentDate.getDate() + 1);
             var answer = moment(currentDate).format('YYYY-MM-DD');
             this.addWorkEntry(answer)
-            
+
         }
 
     }
@@ -78,6 +78,32 @@ export class App {
         let index = this.workEntries.indexOf(workEntry);
         // this.workEntries.push(obj)
         this.workEntries.splice(index, 0, obj);
+    }
+
+    setAllHours(hours) {
+        for (var i = 0; i < this.workEntries.length; i += 1) {
+            this.workEntries[i].hours = hours;
+        }
+
+    }
+
+    setAllRates(rate) {
+
+        for (var i = 0; i < this.workEntries.length; i += 1) {
+            this.workEntries[i].payRate = rate;
+        }
+
+    }
+
+    setAllworkPayment(payRate, hours) {
+
+
+
+        for (var i = 0; i < this.workEntries.length; i += 1) {
+            this.workEntries[i].payment = payRate * hours;
+        }
+
+
     }
 
 }

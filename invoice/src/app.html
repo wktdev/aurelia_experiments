@@ -7,6 +7,15 @@
     <button type="submit">Add work</button>
   </form>
 
+
+  <form submit.trigger="setAllHours(hours)  setAllRates(payRate)  setAllworkPayment(payRate,hours)">
+    <label for="work-rate-all">Work rate (all)</label>
+    <input type="number" value.bind="payRate" step="any" name="work-rate-all" >
+    <label for="hours-all">Hours (all)</label>
+    <input type="number" value.bind="hours" step="any" name="hours-all">
+    <button type="submit" >Set all rate and hours</button>
+  </form>
+
   <ul>
     <li repeat.for="work of workEntries">
     <label for="date">Date</label>
