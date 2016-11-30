@@ -12,6 +12,14 @@ export class App {
         this.workPayRate = '';
         this.workHours = '';
         this.workPayment = '';
+
+        //__________________________BEGIN totals
+
+        this.hoursTotal = 0;
+
+        this.payTotal = 0;
+
+        //__________________________END totals
     }
 
     addWorkEntry(workDate) {
@@ -76,7 +84,6 @@ export class App {
     copyWorkEntry(workEntry) {
         let obj = new WorkEntry(workEntry.date, workEntry.item, workEntry.payRate, workEntry.hours, workEntry.payment);
         let index = this.workEntries.indexOf(workEntry);
-        // this.workEntries.push(obj)
         this.workEntries.splice(index, 0, obj);
     }
 
@@ -84,24 +91,47 @@ export class App {
         for (var i = 0; i < this.workEntries.length; i += 1) {
             this.workEntries[i].hours = hours;
         }
-
     }
 
     setAllRates(rate) {
-
         for (var i = 0; i < this.workEntries.length; i += 1) {
             this.workEntries[i].payRate = rate;
         }
-
     }
 
     setAllworkPayment(payRate, hours) {
 
-
-
         for (var i = 0; i < this.workEntries.length; i += 1) {
             this.workEntries[i].payment = payRate * hours;
         }
+
+    }
+
+    setTotalHours(){
+        this.hoursTotal = 0;
+
+        var total = 0;
+           for (var i = 0; i < this.workEntries.length; i += 1) {
+            total += (+this.workEntries[i].hours);
+        }
+
+        
+        this.hoursTotal = total;
+        console.log(this.hoursTotal)
+ 
+    }
+
+    setTotalPayment(){
+        this.payTotal = 0;
+
+        var total = 0;
+        for (var i = 0; i < this.workEntries.length; i += 1) {
+            total += ( +this.workEntries[i].payment);
+
+        }
+
+        this.payTotal = total;
+
 
 
     }
