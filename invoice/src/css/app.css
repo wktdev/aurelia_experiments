@@ -1,0 +1,41 @@
+body{
+	background-color:orange;
+}
+
+.container{
+	background-color:green;
+	width:920px;
+	margin:0 auto;
+}
+
+input{
+	width:50px;
+}
+
+.start-and-end-dates > input{
+	width:130px;
+}
+
+
+input[name = item]{
+	width:150px;
+}
+
+
+input[name = date]{
+
+	width:130px;
+}
+
+.totals{
+/*	background-color:blue;
+*/	width:390px;
+	float:right;
+	margin-right:90px;
+}
+
+.totals > li{
+	display:inline-block;
+	margin-left:50px;
+}
+

@@ -3,6 +3,10 @@ import { WorkEntry } from 'components/work-entry';
 
 export class App {
     constructor() {
+        this.fillName = "";
+        this.address = "";
+        this.payPalEmail = "";
+
         this.heading = "Invoice App";
         this.startDate = '';
         this.endDate = '';

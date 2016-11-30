@@ -1,7 +1,11 @@
 <template>
+  <require from="./css/app.css"></require>
+
+  <div class="container"> 
+
   <h1>${heading}</h1>
 
-  <form submit.trigger="addWorkEnteries()">
+  <form class="start-and-end-dates" submit.trigger="addWorkEnteries()">
     <input type="date" value.bind="startDate">
     <input type="date" value.bind="endDate">
     <button type="submit">Add work</button>
@@ -16,12 +20,12 @@
     <button type="submit" >Set all rate and hours</button>
   </form>
 
-  <ul>
+  <ul class="all-items">
     <li repeat.for="work of workEntries">
     <label for="date">Date</label>
     <input type="date" value.bind="work.date" change.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()" keyup.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  name="date">
       <label for="item">Item</label>
-    <input type="string" value.bind="work.item" change.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  keyup.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  name="item">
+    <input class="work-item" type="string" value.bind="work.item" change.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  keyup.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  name="item">
       <label for="pay-rate">Pay rate</label>
     <input type="number" value.bind="work.payRate" change.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()" keyup.trigger="updateWorkEntryField(work) setTotalHours() setTotalPayment()"  name="pay-rate">
       <label for="hours">Hours</label>
@@ -34,14 +38,18 @@
     </li>    
   </ul>
 
-  <ul>
+  <ul class="totals">
   <li>
+  <span>Hours total</span>
   ${hoursTotal}
   </li>
 
     <li>
+    <span>Pay total</span>
   ${payTotal}
   </li>
     
   </ul>
+
+  </div>
 </template>
